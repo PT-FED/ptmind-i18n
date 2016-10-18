@@ -1,0 +1,17 @@
+<div>
+    <h1>projects</h1>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th width="200px">name</th>
+            <th>desc</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of projects">
+            <td>{{p.name}}</td>
+            <td>{{p.desc}}</td>
+        </tr>
+    </tbody>
+</table>
