@@ -9,12 +9,15 @@ import {HttpService} from '../../_shared';
 export class ProjectComponent implements OnInit {
     projects:any[];
     constructor(public  http: HttpService) {
+
+    }
+
+    ngOnInit() {
+        this.getProjects();
+    }
+    getProjects(){
         this.http.get('project').subscribe(data=>{
             this.projects = data;
         })
     }
-
-    ngOnInit() {
-    }
-
 }

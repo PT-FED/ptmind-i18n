@@ -1,6 +1,17 @@
 
 @import "~bootstrap/scss/bootstrap";
 
+input.ng-invalid{
+    border: 1px solid red;
+}
+
 .pull-right{
   float: right !important;
+}
+.page-header{
+    padding:20px 0px 10px ;
+}
+
+textarea{
+    height:200px;
 }

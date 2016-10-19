@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">输入module信息</h4>
+</div>
+<div class="modal-body">
+    <form #moduleForm="ngForm">
+        <label>module 名称(数字,字母,_,-)</label>
+        <input type="text" class="form-control"
+               required
+               pattern="[a-zA-Z0-9_\-]+"
+               name="addModuleName"
+               [(ngModel)]="addModuleName">
+        <label>module 描述</label>
+        <textarea class="form-control" name="addModuleDesc"
+                  [(ngModel)]="addModuleDesc"></textarea>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">Close</button>
+    <button type="button" class="btn btn-outline-success"
+            [disabled]="!moduleForm.form.valid"
+            (click)="activeModal.close(addModuleName,addModuleDesc)">Save
+    </button>
+</div>

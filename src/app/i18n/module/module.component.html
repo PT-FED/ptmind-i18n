@@ -1,0 +1,17 @@
+<div class="header">
+    <h1 class="page-header">{{projectName}} modules</h1>
+    <button class="btn btn-outline-primary" (click)="openAdd(content)">add module</button>
+</div>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let m of modules">
+        <h5>{{m.name}}</h5>
+        <pre>{{m.desc}}</pre>
+    </li>
+</ul>
+
+
+<br>
+
+
+
+

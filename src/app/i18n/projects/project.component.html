@@ -1,5 +1,5 @@
 <div>
-    <h1>projects</h1>
+    <h1 class="page-header">projects</h1>
 </div>
 <table class="table table-bordered">
     <thead>
@@ -10,7 +10,9 @@
     </thead>
     <tbody>
         <tr *ngFor="let p of projects">
-            <td>{{p.name}}</td>
+            <td>
+                <a routerLinkActive="active" routerLink="../project/{{p.name}}" >{{p.name}}</a>
+            </td>
             <td>{{p.desc}}</td>
         </tr>
     </tbody>
