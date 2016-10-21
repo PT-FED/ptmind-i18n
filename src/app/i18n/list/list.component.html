@@ -1,4 +1,15 @@
-<p>
-  list works!
-  <input type="text">
-</p>
+<h1 class="page-header">
+    i18n list
+</h1>
+<ul class="list-group" *ngIf="i18ns?.length">
+    <li class="list-group-item" *ngFor="let l of i18ns">
+        <a [routerLink]="['../edit',{project:l.project,module:l.module,key:l.key}]"
+           placement="right" ngbTooltip="编辑该i18n"
+           class="language-key">{{l.project}} > {{l.module}} > {{l.key}}</a>
+        <div *ngFor="let i of l.i18n">
+            <h5>{{i.language}}:{{i.locale}}</h5>
+            <pre>{{i.value}}</pre>
+        </div>
+    </li>
+</ul>
+<p *ngIf="i18ns?.length===0">no data</p>

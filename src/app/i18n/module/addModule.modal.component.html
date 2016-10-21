@@ -21,6 +21,6 @@
     <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">Close</button>
     <button type="button" class="btn btn-outline-success"
             [disabled]="!moduleForm.form.valid"
-            (click)="activeModal.close(addModuleName,addModuleDesc)">Save
+            (click)="activeModal.close({addModuleName:addModuleName,addModuleDesc:addModuleDesc})">Save
     </button>
 </div>

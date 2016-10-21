@@ -12,7 +12,11 @@
 
     </ul>
     <form class="form-inline navbar-form pull-right">
-      <input class="form-control" type="text" placeholder="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}">
+      <input class="form-control" type="text"
+             (keypress)="inputSearchText($event)"
+             placeholder="Search"
+             [(ngModel)]="searchText"
+             [ngModelOptions]="{standalone: true}">
       <button class="btn btn-outline-success" type="button" (click)="search()">Search</button>
     </form>
   </div>

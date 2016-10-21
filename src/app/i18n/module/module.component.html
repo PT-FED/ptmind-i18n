@@ -4,12 +4,41 @@
 </div>
 <ul class="list-group">
     <li class="list-group-item" *ngFor="let m of modules">
-        <h5>{{m.name}}</h5>
+        <a class="module-name"
+           [routerLink]="['../../list',{project:projectName,module:m.name}]"
+           placement="right" ngbTooltip="查看 [{{m.name}}] 下的i18n">{{m.name}}</a>
         <pre>{{m.desc}}</pre>
     </li>
 </ul>
 
-
+<template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="d()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">输入module信息</h4>
+    </div>
+    <div class="modal-body">
+        <form #moduleForm="ngForm">
+            <label>module 名称(数字,字母,_,-)</label>
+            <input type="text" class="form-control"
+                   required
+                   pattern="[a-zA-Z0-9_\-]+"
+                   name="addModuleName"
+                   [(ngModel)]="addModuleName" (invalid)="show()">
+            <label>module 描述</label>
+            <textarea class="form-control"  name="addModuleDesc"
+                      [(ngModel)]="addModuleDesc"></textarea>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="d()">Close</button>
+        <button type="button" class="btn btn-outline-success"
+                [disabled]="!moduleForm.form.valid"
+                (click)="c()">Save
+        </button>
+    </div>
+</template>
 <br>
 
 

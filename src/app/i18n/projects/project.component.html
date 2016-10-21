@@ -11,7 +11,8 @@
     <tbody>
         <tr *ngFor="let p of projects">
             <td>
-                <a routerLinkActive="active" routerLink="../project/{{p.name}}" >{{p.name}}</a>
+                <a routerLinkActive="active" routerLink="../project/{{p.name}}"
+                   placement="right" ngbTooltip="查看 [{{p.name}}] 下的module">{{p.name}}</a>
             </td>
             <td>{{p.desc}}</td>
         </tr>

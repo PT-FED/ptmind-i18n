@@ -24,6 +24,11 @@ export class MenuComponent implements OnInit {
     }
 
     search() {
-        this.router.navigate(['i18n/list', {text: this.searchText}])
+        this.router.navigate(['/i18n/list', {value: this.searchText?this.searchText.trim():''}])
+    }
+    inputSearchText(e:KeyboardEvent){
+        if(e.key==='Enter'){
+            this.search();
+        }
     }
 }

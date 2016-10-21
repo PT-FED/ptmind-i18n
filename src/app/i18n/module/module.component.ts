@@ -1,16 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,AfterViewInit,ElementRef} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {NgbModal, ModalDismissReasons,NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {HttpService} from '../../_shared';
-
 @Component({
-    selector:'app-module-modal',
-    templateUrl: './addModule.modal.component.html'
+    selector: 'add-module-modal-content',
+    templateUrl: './addModule.modal.component.html',
 })
-export class AddModuleModalContent {
+export class AddModuleModalContent implements AfterViewInit{
     addModuleName: string;
     addModuleDesc: string;
-    constructor(public activeModal: NgbActiveModal) {}
+    constructor(public activeModal: NgbActiveModal,public element:ElementRef) {}
+    ngAfterViewInit(){
+        //module 名称输入框获焦
+        this.element.nativeElement.querySelectorAll('[name="addModuleName"]')[0].focus();
+    }
 }
 
 @Component({
@@ -40,11 +43,15 @@ export class ModuleComponent implements OnInit {
         })
     }
 
-    openAdd() {
-        // this.modalService.open(AddModuleModalContent, {backdrop: 'static', keyboard: false}).result.then((result) => {
-        //     this.addModule(result.name,result.desc);
-        // }, (reason) => {});
-        this.modalService.open(AddModuleModalContent);
+    openAdd(content) {
+        // let modalRef = this.modalService.open(content, {backdrop: 'static', keyboard: false});
+        // modalRef.result.then((result) => {
+        //     this.addModule();
+        // }, (reason) => {
+        // });
+        this.modalService.open(AddModuleModalContent,{backdrop: 'static', keyboard: false}).result.then((result)=>{
+            this.addModule(result.addModuleName,result.addModuleDesc);
+        },(reason)=>{});
     }
 
     addModule(addModuleName,addModuleDesc) {
@@ -59,6 +66,6 @@ export class ModuleComponent implements OnInit {
         })
     }
     show(){
-        console.log(1);
+        console.log('loading');
     }
 }
