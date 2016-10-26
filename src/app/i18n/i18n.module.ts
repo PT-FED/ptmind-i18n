@@ -13,6 +13,8 @@ import { EditComponent } from './edit/edit.component';
 import {DetailI18nResolve} from './edit/edit.resolve';
 import {ProjectResolve} from './i18nResolve/project.resolve';
 import {LanguageLocaleResolve} from './i18nResolve/languageLocale.resolve';
+import { AddComponent } from './add/add.component';
+import { SearchComponent } from './search/search.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -24,7 +26,9 @@ import {LanguageLocaleResolve} from './i18nResolve/languageLocale.resolve';
     declarations: [I18nComponent,
         ListComponent, StartComponent, ProjectComponent, ModuleComponent,
         AddModuleModalContent,
-        EditComponent],
+        EditComponent,
+        AddComponent,
+        SearchComponent],
     entryComponents:[AddModuleModalContent]
 })
 export class I18nModule {

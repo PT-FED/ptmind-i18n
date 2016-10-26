@@ -6,9 +6,10 @@
         <a [routerLink]="['../edit',{project:l.project,module:l.module,key:l.key}]"
            placement="right" ngbTooltip="编辑该i18n"
            class="language-key">{{l.project}} > {{l.module}} > {{l.key}}</a>
+        <span class="i18n-del" (click)="delete(l)">x</span>
         <div *ngFor="let i of l.i18n">
             <h5>{{i.language}}:{{i.locale}}</h5>
-            <pre>{{i.value}}</pre>
+            <pre [innerHtml]="i.value"></pre>
         </div>
     </li>
 </ul>

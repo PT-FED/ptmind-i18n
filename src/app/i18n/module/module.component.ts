@@ -1,71 +1,80 @@
-import {Component, OnInit,AfterViewInit,ElementRef} from '@angular/core';
+import {Component, OnInit, AfterViewInit, ElementRef} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {HttpService} from '../../_shared';
+import {HttpService, MessageService} from '../../_shared';
 @Component({
-    selector: 'add-module-modal-content',
-    templateUrl: './addModule.modal.component.html',
+  selector: 'add-module-modal-content',
+  templateUrl: './addModule.modal.component.html',
 })
-export class AddModuleModalContent implements AfterViewInit{
-    addModuleName: string;
-    addModuleDesc: string;
-    constructor(public activeModal: NgbActiveModal,public element:ElementRef) {}
-    ngAfterViewInit(){
-        //module 名称输入框获焦
-        this.element.nativeElement.querySelectorAll('[name="addModuleName"]')[0].focus();
-    }
+export class AddModuleModalContent implements AfterViewInit {
+  addModuleName: string;
+  addModuleDesc: string;
+
+  constructor(public activeModal: NgbActiveModal, public element: ElementRef) {
+  }
+
+  ngAfterViewInit() {
+    //module 名称输入框获焦
+    this.element.nativeElement.querySelectorAll('[name="addModuleName"]')[0].focus();
+  }
 }
 
 @Component({
-    selector: 'app-module',
-    templateUrl: './module.component.html',
-    styleUrls: ['./module.component.scss']
+  selector: 'app-module',
+  templateUrl: './module.component.html',
+  styleUrls: ['./module.component.scss']
 })
 export class ModuleComponent implements OnInit {
-    projectName: string;
+  projectName: string;
 
-    modules: any[];
+  modules: any[];
 
-    constructor(public router: ActivatedRoute, public http: HttpService, public modalService: NgbModal) {
-    }
+  constructor(public router: ActivatedRoute,
+              public message: MessageService,
+              public http: HttpService,
+              public modalService: NgbModal) {
+  }
 
-    ngOnInit() {
-        this.router.params.forEach((p: Params)=> {
-            this.projectName = p['projectName'];
-            this.getModules();
-        });
-    }
+  ngOnInit() {
+    this.router.params.forEach((p: Params)=> {
+      this.projectName = p['projectName'];
+      this.getModules();
+    });
+  }
 
-    getModules() {
-        let path = `module/${this.projectName}`;
-        this.http.get(path).subscribe(modules=> {
-            this.modules = modules;
-        })
-    }
+  getModules() {
+    let path = `module/${this.projectName}`;
+    this.http.get(path).subscribe(modules=> {
+      this.modules = modules;
+    })
+  }
 
-    openAdd(content) {
-        // let modalRef = this.modalService.open(content, {backdrop: 'static', keyboard: false});
-        // modalRef.result.then((result) => {
-        //     this.addModule();
-        // }, (reason) => {
-        // });
-        this.modalService.open(AddModuleModalContent,{backdrop: 'static', keyboard: false}).result.then((result)=>{
-            this.addModule(result.addModuleName,result.addModuleDesc);
-        },(reason)=>{});
-    }
+  openAdd(content) {
+    // let modalRef = this.modalService.open(content, {backdrop: 'static', keyboard: false});
+    // modalRef.result.then((result) => {
+    //     this.addModule();
+    // }, (reason) => {
+    // });
+    this.modalService.open(AddModuleModalContent, {backdrop: 'static', keyboard: false}).result.then((result)=> {
+      this.addModule(result.addModuleName, result.addModuleDesc);
+    }, (reason)=> {
+    });
+  }
 
-    addModule(addModuleName,addModuleDesc) {
-        this.http.add('/module', {
-            module: {
-                project: this.projectName,
-                name: addModuleName,
-                desc: addModuleDesc
-            }
-        }).subscribe(()=> {
-            this.getModules();
-        })
-    }
-    show(){
-        console.log('loading');
-    }
+  addModule(addModuleName, addModuleDesc) {
+    this.http.add('/module', {
+      module: {
+        project: this.projectName,
+        name: addModuleName,
+        desc: addModuleDesc
+      }
+    }).subscribe(()=> {
+      this.getModules();
+      this.message.show({text: 'save complete!!!'})
+    })
+  }
+
+  show() {
+    console.log('loading');
+  }
 }

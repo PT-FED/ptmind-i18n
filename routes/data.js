@@ -7,6 +7,11 @@ var language_localDataPath = path.join(__dirname, '../data/language_locale.json'
 var langsDataPath = path.join(__dirname, '../data/langs.json');
 var router = express.Router();
 
+function Status(name, msg, opt) {
+  this.status = name || 'success';
+  this.msg = msg || '';
+}
+
 /* GET projects. */
 router.get('/project', function (req, res, next) {
   jsonfile.readFile(projectDataPath, function (err, projects) {
@@ -34,7 +39,7 @@ router.post('/module', function (req, res, next) {
   jsonfile.readFile(moduleDataPath, function (err, modules) {
     modules.push(module);
     jsonfile.writeFile(moduleDataPath, modules, {}, function () {
-      res.end();
+      res.json(new Status());
     });
   });
 });
@@ -71,6 +76,9 @@ router.get('/langs', function (req, res) {
   });
 });
 
+/**
+ * 修改多国语
+ */
 router.put('/lang', function (req, res) {
   var project = req.body['project'];
   var module = req.body['module'];
@@ -84,15 +92,85 @@ router.put('/lang', function (req, res) {
       var tempI18n = i18n.find(function (i) {
         return l.language === i.language && l.locale === i.locale;
       })
-      if(tempI18n){
+      if (tempI18n) {
         l.value = tempI18n.value;
       }
     });
-    jsonfile.writeFile(langsDataPath,langs,{},function (err) {
-      res.end();
+
+    i18n.forEach(i=> {
+      var tempI18n = currentLang.find(function (l) {
+        return l.language === i.language && l.locale === i.locale;
+      });
+      if (tempI18n) {
+        tempI18n.value = i.value;
+      } else {
+        langs.push({
+          project: project,
+          module: module,
+          key: key,
+          language: i.language,
+          locale: i.locale,
+          value: i.value
+        });
+      }
+    });
+    jsonfile.writeFile(langsDataPath, langs, {}, function (err) {
+      res.json(new Status());
     });
   });
 
 });
 
+/**
+ * 新增多国语
+ */
+router.post('/lang', function (req, res) {
+  var project = req.body['project'];
+  var module = req.body['module'];
+  var key = req.body['key'];
+  var i18n = req.body['i18n'];
+  jsonfile.readFile(langsDataPath, function (err, langs) {
+    var existLang = langs.filter(function (l) {
+      return l.project === project && l.module === module && l.key === key;
+    });
+    if (existLang && existLang.length) {
+      res.json(new Status('error', 'exist i18n key!!!'))
+    } else {
+      i18n.forEach(i=> {
+        langs.push({
+          project: project,
+          module: module,
+          key: key,
+          language: i.language,
+          locale: i.locale,
+          value: i.value
+        });
+      });
+      jsonfile.writeFile(langsDataPath, langs, {}, function (err) {
+        res.json(new Status());
+      });
+    }
+  });
+});
+
+/**
+ * 删除指定项目/模块/key 的多国语
+ */
+router.delete('/lang', function (req, res) {
+  var project = req.query['project'];
+  var module = req.query['module'];
+  var key = req.query['key'];
+  jsonfile.readFile(langsDataPath, function (err, langs) {
+    var remainLangs=[];
+    langs.forEach(function (l) {
+      if(l.project===project && l.module===module && l.key===key){
+        return;
+      }
+      remainLangs.push(l);
+    });
+    jsonfile.writeFile(langsDataPath, remainLangs, {}, function (err) {
+      res.json(new Status());
+    });
+  });
+});
 module.exports = router;

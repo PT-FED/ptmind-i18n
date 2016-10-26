@@ -14,7 +14,8 @@ export class I18nComponent implements OnInit {
   ngOnInit() {
     this.route.data.forEach(data=> {
       this.i18nService.project=data['project'];
-    })
+      this.i18nService.languageLocale=data['languageLocale'];
+    });
   }
 
 }

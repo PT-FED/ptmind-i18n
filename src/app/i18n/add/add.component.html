@@ -1,0 +1,42 @@
+<h1 class="page-header">
+  add i18n
+</h1>
+<div class="form-group">
+  <div ngbDropdown class="d-inline-block">
+    <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>{{selectedProject||'select project'}}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <button class="dropdown-item"
+              (click)="selectProject(p)"
+              *ngFor="let p of projects">{{p.name}}
+      </button>
+      <button *ngIf="!projects.length" class="dropdown-item">no data</button>
+    </div>
+  </div>
+  <div ngbDropdown class="d-inline-block">
+    <button class="btn btn-outline-primary" id="dropdownMenu2" ngbDropdownToggle>{{selectedModule|| 'select module'}}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+      <button class="dropdown-item"
+              *ngFor="let m of modules"
+              (click)="selectedModule=m.name">{{m.name}}</button>
+      <button *ngIf="!modules.length" class="dropdown-item">no data</button>
+    </div>
+  </div>
+  <input type="text" class=" form-control text-key" [(ngModel)]="key"
+         required
+         pattern="[a-zA-Z0-9_]+"
+         placement="bottom" ngbTooltip="数字/字母/下划线(_)"
+         placeholder="input i18n key" #i18nKey="ngModel">
+  <button class="btn btn-outline-success pull-right"
+          [disabled]="!selectedProject || !selectedModule || i18nKey.invalid"
+          (click)="save()">Save
+  </button>
+</div>
+
+<ul class="i18n-list list-group">
+  <li class="list-group-item" *ngFor="let i of i18n">
+    <label> {{i.language}}-{{i.locale}}</label>
+    <textarea class="form-control" [(ngModel)]="i.value"></textarea>
+  </li>
+</ul>

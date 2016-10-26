@@ -1,0 +1,19 @@
+:host /deep/ .i18n-list .list-group-item{
+  position: relative;
+  padding-right: 76px;
+  label{
+    position: absolute;
+    left:10px;
+    width: 60px;
+    text-align: right;
+  }
+  textarea{
+    height: 42px;
+    margin-left: 66px;
+    padding: 0.2rem 0.4rem;
+    font-size: 14px;
+    &:focus{
+      height: 120px;
+    }
+  }
+}

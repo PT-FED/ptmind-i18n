@@ -2,3 +2,13 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+.i18n-del{
+  padding: 0 10px;
+  float: right;
+  cursor: pointer;
+  color: #999999;
+  &:hover{
+    color: #333333;
+  }
+}

@@ -1,0 +1,32 @@
+@import "~bootstrap/scss/variables";
+$messageBorderRadius:5px;
+:host{
+  position: fixed;
+  bottom:3px;
+  right: 3px;
+}
+.app-message-group{
+  min-width: 240px;
+  max-width: 480px;
+  .app-message-group-item{
+    margin-top: 10px;
+    padding: 10px;
+    border:1px solid;
+    border-radius: $messageBorderRadius;
+    &.message-success{
+      color: #fff;
+      background-color: $brand-success;
+      border-color: $brand-success;
+    }
+    &.message-warning{
+      color: #fff;
+      background-color: $brand-warning;
+      border-color: $brand-warning;
+    }
+    &.message-danger{
+      color: #fff;
+      background-color: $brand-danger;
+      border-color: $brand-danger;
+    }
+  }
+}

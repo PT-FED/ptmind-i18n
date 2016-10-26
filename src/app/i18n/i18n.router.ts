@@ -7,6 +7,8 @@ import {ProjectComponent} from './projects/project.component';
 import {ModuleComponent} from './module/module.component';
 import {EditComponent} from './edit/edit.component';
 import {DetailI18nResolve} from './edit/edit.resolve';
+import { AddComponent } from './add/add.component';
+import { SearchComponent } from './search/search.component';
 import {ProjectResolve} from './i18nResolve/project.resolve';
 import {LanguageLocaleResolve} from './i18nResolve/languageLocale.resolve';
 const routes: Routes = [
@@ -35,11 +37,19 @@ const routes: Routes = [
         component: ListComponent
       },
       {
+        path: 'search',
+        component: SearchComponent
+      },
+      {
         path: 'edit',
         resolve: {
           i18n: DetailI18nResolve
         },
         component: EditComponent
+      },
+      {
+        path:'add',
+        component:AddComponent
       }
     ]
   }

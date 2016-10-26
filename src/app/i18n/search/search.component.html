@@ -1,0 +1,15 @@
+<h1 class="page-header">
+  i18n Search
+</h1>
+<ul class="list-group" *ngIf="i18ns?.length">
+  <li class="list-group-item" *ngFor="let l of i18ns">
+    <a [routerLink]="['../edit',{project:l.project,module:l.module,key:l.key}]"
+       placement="right" ngbTooltip="编辑该i18n"
+       class="language-key">{{l.project}} > {{l.module}} > {{l.key}}</a>
+    <div >
+      <h5>{{l.language}}:{{l.locale}}</h5>
+      <pre [innerHtml]="l.value"></pre>
+    </div>
+  </li>
+</ul>
+<p *ngIf="i18ns?.length===0">no data</p>
