@@ -40,7 +40,7 @@ export class ListComponent implements OnInit {
     });
   }
   delete(language){
-    this.message.confirm().then(result=>{
+    this.message.confirm({title:'确认删除',msg:'删除后的多国语将无法还原!!!',type:'warning'}).then(result=>{
       this.http.delete('lang',{
         project:language.project,
         module:language.module,
