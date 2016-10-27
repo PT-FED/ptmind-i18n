@@ -5,7 +5,8 @@ import { SearchComponent } from './search.component';
 
 describe('Component: Search', () => {
   it('should create an instance', () => {
-    let component = new SearchComponent();
+    let fixture = TestBed.createComponent(SearchComponent);
+    let component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   });
 });

@@ -1,3 +1,12 @@
-<p>
-  start works!
-</p>
+<div class="header">
+  <h1 class="page-header">ptmind i18n</h1>
+  <button (click)="build()" class="btn btn-outline-info">build i18n</button>
+</div>
+<ul class="list-group">
+  <li class="list-group-item">
+    <a [routerLink]="['./projects']">projects</a>
+  </li>
+  <li class="list-group-item">
+    <a [routerLink]="['./add']">new i18n</a>
+  </li>
+</ul>

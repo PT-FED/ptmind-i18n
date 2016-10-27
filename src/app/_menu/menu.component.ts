@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GlobalEventService} from '../_shared';
 import {ActivatedRoute, Router} from '@angular/router'
 @Component({
@@ -19,9 +19,6 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  ngOnDestroy() {
-
-  }
 
   search() {
     let value = this.searchText.trim();

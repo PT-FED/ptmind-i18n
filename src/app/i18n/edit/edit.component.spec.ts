@@ -5,7 +5,8 @@ import { EditComponent } from './edit.component';
 
 describe('Component: Edit', () => {
   it('should create an instance', () => {
-    let component = new EditComponent();
+    let fixture = TestBed.createComponent(EditComponent);
+    let component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   });
 });

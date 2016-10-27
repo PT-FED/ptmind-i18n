@@ -5,7 +5,8 @@ import { MessageComponent } from './message.component';
 
 describe('Component: Message', () => {
   it('should create an instance', () => {
-    let component = new MessageComponent();
+    let fixture = TestBed.createComponent(MessageComponent);
+    let component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   });
 });

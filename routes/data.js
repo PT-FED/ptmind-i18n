@@ -1,6 +1,7 @@
 let express = require('express');
 var jsonfile = require('jsonfile');
 var path = require('path');
+var q = require('q');
 var projectDataPath = path.join(__dirname, '../data/project.json');
 var moduleDataPath = path.join(__dirname, '../data/module.json');
 var language_localDataPath = path.join(__dirname, '../data/language_locale.json');
@@ -10,6 +11,29 @@ var router = express.Router();
 function Status(name, msg, opt) {
   this.status = name || 'success';
   this.msg = msg || '';
+}
+
+function getFile(path) {
+  var deferred = q.defer();
+  jsonfile.readFile(path, function (err, data) {
+    if (err) {
+      deferred.reject(new Error(err));
+    } else {
+      deferred.resolve(data);
+    }
+  });
+  return deferred.promise;
+}
+function writeFile(path, data) {
+  var deferred = q.defer();
+  jsonfile.writeFile(path, data, {}, function (err) {
+    if (err) {
+      deferred.reject(new Error(err));
+    } else {
+      deferred.resolve();
+    }
+  });
+  return deferred.promise;
 }
 
 /* GET projects. */
@@ -161,9 +185,9 @@ router.delete('/lang', function (req, res) {
   var module = req.query['module'];
   var key = req.query['key'];
   jsonfile.readFile(langsDataPath, function (err, langs) {
-    var remainLangs=[];
+    var remainLangs = [];
     langs.forEach(function (l) {
-      if(l.project===project && l.module===module && l.key===key){
+      if (l.project === project && l.module === module && l.key === key) {
         return;
       }
       remainLangs.push(l);
@@ -172,5 +196,46 @@ router.delete('/lang', function (req, res) {
       res.json(new Status());
     });
   });
+});
+
+router.get('/build', function (req, res) {
+  jsonfile.readFile(language_localDataPath, function (err, language) {
+    jsonfile.readFile(langsDataPath, function (err, langs) {
+      // var languageI18n = {};
+      // language.forEach(function (l) {
+      //   l.locale.forEach(function (locale) {
+      //     languageI18n[l.language + '_' + locale] = {};
+      //   });
+      // });
+      // langs.forEach(function (l) {
+      //   languageI18n[l.language + '_' + l.locale][l.project + '$' + l.module + '$' + l.key] = l.value;
+      // });
+      // var buildedI1n8Path = path.join(__dirname, '../data/build/');
+      // for (var languageLocale in languageI18n) {
+      //
+      // }
+    });
+  });
+  q.all([getFile(language_localDataPath), getFile(langsDataPath)]).then(function (result) {
+    var language = result[0];
+    var langs = result[1];
+    var languageI18n = {};
+    language.forEach(function (l) {
+      l.locale.forEach(function (locale) {
+        languageI18n[l.language + '_' + locale] = {};
+      });
+    });
+    langs.forEach(function (l) {
+      languageI18n[l.language + '_' + l.locale][l.project + '$' + l.module + '$' + l.key] = l.value;
+    });
+    var writeFiles = [];
+    var buildedI1n8Path = path.join(__dirname, '../data/build/');
+    for (var languageLocale in languageI18n) {
+      writeFiles.push(writeFile(buildedI1n8Path + languageLocale + '.json', languageI18n[languageLocale]));
+    }
+    q.all(writeFiles).then(function () {
+      res.json(new Status());
+    });
+  })
 });
 module.exports = router;

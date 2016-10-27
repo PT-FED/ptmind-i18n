@@ -5,7 +5,8 @@ import { I18nComponent } from './i18n.component';
 
 describe('Component: I18n', () => {
   it('should create an instance', () => {
-    let component = new I18nComponent();
+    let fixture = TestBed.createComponent(I18nComponent);
+    let component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   });
 });

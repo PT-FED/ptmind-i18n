@@ -5,7 +5,8 @@ import { AddComponent } from './add.component';
 
 describe('Component: Add', () => {
   it('should create an instance', () => {
-    let component = new AddComponent();
+    let fixture = TestBed.createComponent(AddComponent);
+    let component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   });
 });

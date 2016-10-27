@@ -5,3 +5,4 @@
 .idea/
 /public/
 /npm-debug.log
+/data/build/*

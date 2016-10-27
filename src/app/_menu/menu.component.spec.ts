@@ -2,7 +2,7 @@
 
 import {TestBed, ComponentFixture, async} from '@angular/core/testing';
 import {MenuComponent} from './menu.component';
-import {GlobalEventService} from '../shared';
+import {GlobalEventService} from '../_shared';
 let fixture: ComponentFixture<MenuComponent>;
 let component: MenuComponent;
 
