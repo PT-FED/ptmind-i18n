@@ -8,7 +8,7 @@ import {I18nService} from './i18n.service';
 import {ListComponent} from './list/list.component';
 import {StartComponent} from './start/start.component';
 import {ProjectComponent} from './projects/project.component';
-import {ModuleComponent,AddModuleModalContent} from './module/module.component';
+import {ModuleComponent,AddModuleModalContentComponent} from './module/module.component';
 import { EditComponent } from './edit/edit.component';
 import {DetailI18nResolve} from './edit/edit.resolve';
 import {ProjectResolve} from './i18nResolve/project.resolve';
@@ -25,11 +25,11 @@ import { SearchComponent } from './search/search.component';
     providers: [I18nService,DetailI18nResolve,ProjectResolve,LanguageLocaleResolve],
     declarations: [I18nComponent,
         ListComponent, StartComponent, ProjectComponent, ModuleComponent,
-        AddModuleModalContent,
+      AddModuleModalContentComponent,
         EditComponent,
         AddComponent,
         SearchComponent],
-    entryComponents:[AddModuleModalContent]
+    entryComponents:[AddModuleModalContentComponent]
 })
 export class I18nModule {
 }

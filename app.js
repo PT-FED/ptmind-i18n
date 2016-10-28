@@ -37,6 +37,7 @@ app.use(bodyParser.json({limit: 1024 * 1024 * 100}));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'build')));
 //i18n开始的路径 是记载index html页面，其后的path都是由前端路由控制
 app.use('/i18n', function (req, res, nex) {
   res.sendFile(path.join(__dirname, 'public/index.html'));

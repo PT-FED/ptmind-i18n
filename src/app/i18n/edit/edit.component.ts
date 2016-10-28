@@ -16,13 +16,13 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data.forEach(data=> {
+    this.route.data.forEach(data => {
       this.i18n = data['i18n'];
-    })
+    });
   }
 
   save() {
-    this.http.update('lang', this.i18n).subscribe(()=> {
+    this.http.update('lang', this.i18n).subscribe(() => {
       this.message.show({text: 'Save complete!!!'});
       window.history.back();
     });

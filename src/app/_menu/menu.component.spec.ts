@@ -1,20 +1,17 @@
 /* tslint:disable:no-unused-variable */
 
 import {TestBed, ComponentFixture, async} from '@angular/core/testing';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MenuComponent} from './menu.component';
 import {GlobalEventService} from '../_shared';
 let fixture: ComponentFixture<MenuComponent>;
 let component: MenuComponent;
 
-
 describe('Component: Menu', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [MenuComponent],
-      providers: [{
-        provide: GlobalEventService,
-        useValue: {title: 'menu'}
-      }]
+      providers: [GlobalEventService]
     });
   });
   it('should create an instance', () => {

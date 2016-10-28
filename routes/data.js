@@ -198,40 +198,38 @@ router.delete('/lang', function (req, res) {
   });
 });
 
-router.get('/build', function (req, res) {
-  jsonfile.readFile(language_localDataPath, function (err, language) {
-    jsonfile.readFile(langsDataPath, function (err, langs) {
-      // var languageI18n = {};
-      // language.forEach(function (l) {
-      //   l.locale.forEach(function (locale) {
-      //     languageI18n[l.language + '_' + locale] = {};
-      //   });
-      // });
-      // langs.forEach(function (l) {
-      //   languageI18n[l.language + '_' + l.locale][l.project + '$' + l.module + '$' + l.key] = l.value;
-      // });
-      // var buildedI1n8Path = path.join(__dirname, '../data/build/');
-      // for (var languageLocale in languageI18n) {
-      //
-      // }
-    });
-  });
-  q.all([getFile(language_localDataPath), getFile(langsDataPath)]).then(function (result) {
-    var language = result[0];
-    var langs = result[1];
+router.post('/build', function (req, res) {
+  q.all([getFile(projectDataPath), getFile(language_localDataPath), getFile(langsDataPath)]).then(function (result) {
+    var projects = result[0];
+    var language = result[1];
+    var langs = result[2];
     var languageI18n = {};
-    language.forEach(function (l) {
-      l.locale.forEach(function (locale) {
-        languageI18n[l.language + '_' + locale] = {};
+    var globalProjectName = '';
+    projects.forEach(function (p) {
+      if (p.globalProject) {
+        globalProjectName = p.name;
+      }
+      language.forEach(function (l) {
+        l.locale.forEach(function (locale) {
+          languageI18n[p.name + '_' + l.language + '_' + locale] = {};
+        });
       });
     });
+
     langs.forEach(function (l) {
-      languageI18n[l.language + '_' + l.locale][l.project + '$' + l.module + '$' + l.key] = l.value;
+      if (l.project === globalProjectName) {//公共项目的需要添加到其它项目中
+        projects.forEach(function (p) {
+          languageI18n[p.name + '_' + l.language + '_' + l.locale][l.project + '$' + l.module + '$' + l.key] = l.value;
+        });
+      }
+      else {
+        languageI18n[l.project + '_' + l.language + '_' + l.locale][l.project + '$' + l.module + '$' + l.key] = l.value;
+      }
     });
     var writeFiles = [];
-    var buildedI1n8Path = path.join(__dirname, '../data/build/');
+    var buildI1n8Path = path.join(__dirname, '../build/');
     for (var languageLocale in languageI18n) {
-      writeFiles.push(writeFile(buildedI1n8Path + languageLocale + '.json', languageI18n[languageLocale]));
+      writeFiles.push(writeFile(buildI1n8Path + languageLocale + '.json', languageI18n[languageLocale]));
     }
     q.all(writeFiles).then(function () {
       res.json(new Status());

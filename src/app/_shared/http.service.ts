@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptionsArgs} from '@angular/http';
 import {environment} from '../../environments/environment';
-import {MessageService} from './message'
+import {MessageService} from './message';
 import {Observable} from 'rxjs';
 @Injectable()
 export class HttpService {
@@ -31,12 +31,12 @@ export class HttpService {
     if (queryString) {
       queryString = '?' + queryString.substr(1);
     }
-    let observable = Observable.create(observe=> {
+    let observable = Observable.create(observe => {
       let _observe = observe;
-      this.http.get(this.apiUrl + path + queryString).subscribe(res=> {
+      this.http.get(this.apiUrl + path + queryString).subscribe(res => {
         _observe.next(res.json());
         _observe.complete();
-      }, err=> {
+      }, err => {
         this.message.show({text: 'get failed!!!', type: 'danger'});
       });
     });
@@ -55,12 +55,12 @@ export class HttpService {
     if (queryString) {
       queryString = '?' + queryString.substr(1);
     }
-    let observable = Observable.create(observe=> {
+    let observable = Observable.create(observe => {
       let _observe = observe;
-      this.http.delete(this.apiUrl + path + queryString).subscribe(res=> {
+      this.http.delete(this.apiUrl + path + queryString).subscribe(res => {
         _observe.next(res.json());
         _observe.complete();
-      }, err=> {
+      }, err => {
         this.message.show({text: 'delete failed!!!', type: 'danger'});
       });
     });
@@ -68,23 +68,23 @@ export class HttpService {
   }
 
   add(path: string, body: any, option?: RequestOptionsArgs): Observable<any> {
-    let observable = Observable.create(observe=> {
+    let observable = Observable.create(observe => {
       let _observe = observe;
-      this.http.post(this.apiUrl + path, body, this._extendOption(option)).subscribe(res=> {
+      this.http.post(this.apiUrl + path, body, this._extendOption(option)).subscribe(res => {
         _observe.next(res.json());
         _observe.complete();
-      })
+      });
     });
     return observable;
   }
 
   update(path: string, body: any, option?: RequestOptionsArgs): Observable<any> {
-    let observable = Observable.create(observe=> {
+    let observable = Observable.create(observe => {
       let _observe = observe;
-      this.http.put(this.apiUrl + path, body, this._extendOption(option)).subscribe(res=> {
+      this.http.put(this.apiUrl + path, body, this._extendOption(option)).subscribe(res => {
         _observe.next(res.json());
         _observe.complete();
-      }, err=> {
+      }, err => {
         this.message.show({text: 'update failed!!!', type: 'danger'});
       });
     });

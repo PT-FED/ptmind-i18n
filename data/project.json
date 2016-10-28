@@ -1,7 +1,8 @@
 [
   {
     "name": "ptmind",
-    "desc": "公共项目，资源被其它项目共享！"
+    "desc": "公共项目，资源被其它项目共享！",
+    "globalProject":true
   },
   {
     "name":"ptEngine",

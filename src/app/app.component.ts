@@ -10,7 +10,7 @@ import {GlobalEventService} from './_shared';
 export class AppComponent {
     public path: string = '';
     constructor(public r: Router, public globalEvent: GlobalEventService, public titleService: Title) {
-        this.r.events.subscribe((data)=>{
+        this.r.events.subscribe((data) => {
             this.path = data.url.substr(1);
         });
         this.titleService.setTitle('ptmind-i18n');

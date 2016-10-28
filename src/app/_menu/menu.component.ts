@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {GlobalEventService} from '../_shared';
-import {ActivatedRoute, Router} from '@angular/router'
+import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -10,10 +10,9 @@ export class MenuComponent implements OnInit {
   searchText: string = '';
 
   constructor(public router: Router, public activatedRoute: ActivatedRoute, public globalEvent: GlobalEventService) {
-    this.globalEvent.events['clearSearchText'].subscribe(()=> {
+    this.globalEvent.events['clearSearchText'].subscribe(() => {
       this.searchText = '';
-      console.log('clearSearchText')
-    })
+    });
   }
 
   ngOnInit() {
@@ -23,7 +22,7 @@ export class MenuComponent implements OnInit {
   search() {
     let value = this.searchText.trim();
     if (value) {
-      this.router.navigate(['/i18n/search', {value: value}])
+      this.router.navigate(['/i18n/search', {value: value}]);
     }
   }
 

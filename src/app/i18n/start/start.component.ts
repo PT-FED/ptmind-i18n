@@ -15,7 +15,7 @@ export class StartComponent implements OnInit {
   }
 
   build() {
-    this.http.get('build').subscribe(res=> {
+    this.http.add('build', {}).subscribe(res => {
       if (res.status === 'success') {
         this.message.show({text: 'build success!!!'});
       } else {

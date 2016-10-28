@@ -9,7 +9,7 @@ import {I18nService} from '../i18n.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit,OnDestroy {
+export class SearchComponent implements OnInit, OnDestroy {
   value: string;
   i18ns: any[];
 
@@ -20,8 +20,7 @@ export class SearchComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit() {
-    console.log('ngOnInit')
-    this.router.params.forEach((p: Params)=> {
+    this.router.params.forEach((p: Params) => {
       this.value = p['value'];
       this.search();
     });
@@ -35,7 +34,7 @@ export class SearchComponent implements OnInit,OnDestroy {
     let queryParams = {
       value: this.value
     };
-    this.http.get('langs', queryParams).subscribe(data=> {
+    this.http.get('langs', queryParams).subscribe(data => {
       this.i18ns = data;
     });
   }

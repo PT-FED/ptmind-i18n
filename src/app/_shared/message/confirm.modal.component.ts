@@ -1,23 +1,31 @@
 import {Component, OnInit} from '@angular/core';
-import { NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {MessageParamsService} from './message.params.service';
 @Component({
-  selector: 'confirm-modal-content',
+  selector: 'app-confirm-modal-content',
   templateUrl: './confirm.modal.component.html',
 })
-export class ConfirmModalContent implements OnInit {
+export class ConfirmModalContentComponent implements OnInit {
   title: string;
   msg: string;
-  type:string;
+  type: string;
 
-  constructor(public activeModal: NgbActiveModal,public params:MessageParamsService) {
-    if(this.params.data){
-      this.title=this.params.data['title'];
-      this.msg=this.params.data['msg'];
-      this.type=this.params.data['type'];
+  constructor(public activeModal: NgbActiveModal, public params: MessageParamsService) {
+    if (this.params.data) {
+      this.title = this.params.data['title'];
+      this.msg = this.params.data['msg'];
+      this.type = this.params.data['type'];
     }
   }
-  ngOnInit(){}
-  dismiss(){this.activeModal.dismiss()}
-  close(){this.activeModal.close()}
+
+  ngOnInit() {
+  }
+
+  dismiss() {
+    this.activeModal.dismiss();
+  }
+
+  close() {
+    this.activeModal.close();
+  }
 }

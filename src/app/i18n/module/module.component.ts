@@ -1,12 +1,12 @@
 import {Component, OnInit, AfterViewInit, ElementRef} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {HttpService, MessageService} from '../../_shared';
 @Component({
-  selector: 'add-module-modal-content',
+  selector: 'app-add-module-modal-content',
   templateUrl: './addModule.modal.component.html',
 })
-export class AddModuleModalContent implements AfterViewInit {
+export class AddModuleModalContentComponent implements AfterViewInit {
   addModuleName: string;
   addModuleDesc: string;
 
@@ -14,7 +14,7 @@ export class AddModuleModalContent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    //module 名称输入框获焦
+    // module 名称输入框获焦
     this.element.nativeElement.querySelectorAll('[name="addModuleName"]')[0].focus();
   }
 }
@@ -36,7 +36,7 @@ export class ModuleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.params.forEach((p: Params)=> {
+    this.router.params.forEach((p: Params) => {
       this.projectName = p['projectName'];
       this.getModules();
     });
@@ -44,9 +44,9 @@ export class ModuleComponent implements OnInit {
 
   getModules() {
     let path = `module/${this.projectName}`;
-    this.http.get(path).subscribe(modules=> {
+    this.http.get(path).subscribe(modules => {
       this.modules = modules;
-    })
+    });
   }
 
   openAdd(content) {
@@ -55,9 +55,9 @@ export class ModuleComponent implements OnInit {
     //     this.addModule();
     // }, (reason) => {
     // });
-    this.modalService.open(AddModuleModalContent, {backdrop: 'static', keyboard: false}).result.then((result)=> {
+    this.modalService.open(AddModuleModalContentComponent, {backdrop: 'static', keyboard: false}).result.then((result) => {
       this.addModule(result.addModuleName, result.addModuleDesc);
-    }, (reason)=> {
+    }, (reason) => {
     });
   }
 
@@ -68,10 +68,10 @@ export class ModuleComponent implements OnInit {
         name: addModuleName,
         desc: addModuleDesc
       }
-    }).subscribe(()=> {
+    }).subscribe(() => {
       this.getModules();
-      this.message.show({text: 'save complete!!!'})
-    })
+      this.message.show({text: 'save complete!!!'});
+    });
   }
 
   show() {

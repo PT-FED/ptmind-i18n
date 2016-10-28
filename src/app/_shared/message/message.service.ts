@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Subject} from 'rxjs';
-import {ConfirmModalContent} from './confirm.modal.component';
+import {ConfirmModalContentComponent} from './confirm.modal.component';
 import {MessageParamsService} from './message.params.service';
 export interface IMessage {
   text: string;
@@ -12,15 +12,15 @@ export interface IMessage {
 export class MessageService {
   messageSubject: Subject<IMessage> = new Subject<IMessage>();
 
-  constructor(public modalService: NgbModal, public paramsService:MessageParamsService) {
+  constructor(public modalService: NgbModal, public paramsService: MessageParamsService) {
   }
 
   show(msg: IMessage) {
     this.messageSubject.next(msg);
   }
 
-  confirm(params?:any): Promise<any> {
-    this.paramsService.data=params;
-    return this.modalService.open(ConfirmModalContent).result;
+  confirm(params?: any): Promise<any> {
+    this.paramsService.data = params;
+    return this.modalService.open(ConfirmModalContentComponent).result;
   }
 }
