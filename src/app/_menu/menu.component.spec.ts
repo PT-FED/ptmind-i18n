@@ -1,23 +1,31 @@
 /* tslint:disable:no-unused-variable */
 
 import {TestBed, ComponentFixture, async} from '@angular/core/testing';
-import {ActivatedRoute, Router} from '@angular/router';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {ActivatedRoute, Router,RouterModule} from '@angular/router';
+import {ActivatedRouteStub, RouterStub} from '../../test/router-stubs';
 import {MenuComponent} from './menu.component';
 import {GlobalEventService} from '../_shared';
 let fixture: ComponentFixture<MenuComponent>;
 let component: MenuComponent;
 
 describe('Component: Menu', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [MenuComponent],
-      providers: [GlobalEventService]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [CommonModule,FormsModule,RouterModule],
+            declarations: [MenuComponent],
+            providers: [GlobalEventService, {
+                provide: ActivatedRoute, useClass: ActivatedRouteStub
+            }, {
+                provide: Router, useClass: RouterStub
+            }]
+        });
     });
-  });
-  it('should create an instance', () => {
-    fixture = TestBed.createComponent(MenuComponent);
-    component = fixture.componentInstance;
-    expect(component).toBeTruthy();
-  });
+    it('should create an instance', () => {
+        fixture = TestBed.createComponent(MenuComponent);
+        component = fixture.componentInstance;
+        expect(component).toBeTruthy();
+    });
 
 });
