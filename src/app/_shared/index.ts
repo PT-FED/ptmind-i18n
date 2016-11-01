@@ -1,4 +1,4 @@
 export * from './shared.module';
-export * from './global-event.service';
+export * from './global.service';
 export * from './http.service';
 export * from './message';

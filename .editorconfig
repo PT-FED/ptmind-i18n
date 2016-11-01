@@ -13,10 +13,10 @@ indent_size = 2
 tab_width = 2
 
 # Set default charset
-[*.{js,html,css}]
+[*.{js,html,css,ts}]
 charset = utf-8
 
-[*.js]
+[*.{ts,js}]
 indent_style = space
 indent_size = 2
 tab_width = 2

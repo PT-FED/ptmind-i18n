@@ -2,7 +2,7 @@
 
 import {TestBed, async} from '@angular/core/testing';
 import {AppComponent} from './app.component';
-import {GlobalEventService} from './_shared';
+import {GlobalService} from './_shared';
 import {Router, ActivatedRoute, RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {RouterStub, ActivatedRouteStub} from '../test/router-stubs';
@@ -17,7 +17,7 @@ describe('App: Ptengine I18n', () => {
             declarations: [
                 AppComponent, MenuComponent, MessageComponent
             ],
-            providers: [GlobalEventService,
+            providers: [GlobalService,
                 {
                     provide: Router,
                     useClass: RouterStub

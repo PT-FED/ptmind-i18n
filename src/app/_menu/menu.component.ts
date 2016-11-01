@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GlobalEventService} from '../_shared';
+import {GlobalService} from '../_shared';
 import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-menu',
@@ -9,8 +9,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class MenuComponent implements OnInit {
   searchText: string = '';
 
-  constructor(public router: Router, public activatedRoute: ActivatedRoute, public globalEvent: GlobalEventService) {
-    this.globalEvent.events['clearSearchText'].subscribe(() => {
+  constructor(public router: Router, public activatedRoute: ActivatedRoute, public global: GlobalService) {
+    this.global.events['clearSearchText'].subscribe(() => {
       this.searchText = '';
     });
   }

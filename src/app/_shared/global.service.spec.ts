@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed,  inject } from '@angular/core/testing';
-import { GlobalEventService } from './global-event.service';
+import { GlobalService } from './global.service';
 
 describe('Service: GlobalEvent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [GlobalEventService]
+      providers: [GlobalService]
     });
   });
 
-  it('should ...', inject([GlobalEventService], (service: GlobalEventService) => {
+  it('should ...', inject([GlobalService], (service: GlobalService) => {
     expect(service).toBeTruthy();
   }));
 });

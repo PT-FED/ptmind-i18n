@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {GlobalEventService, HttpService} from '../../_shared';
+import {GlobalService, HttpService} from '../../_shared';
 import {I18nService} from '../i18n.service';
 
 
@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(public router: ActivatedRoute,
               public http: HttpService,
-              public globalEventService: GlobalEventService,
+              public globalService: GlobalService,
               public i18nService: I18nService) {
   }
 
@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.globalEventService.events['clearSearchText'].next();
+    this.globalService.events['clearSearchText'].next();
   }
 
   search() {
