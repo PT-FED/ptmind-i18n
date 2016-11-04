@@ -5,7 +5,7 @@
 <ul class="list-group">
     <li class="list-group-item" *ngFor="let m of modules">
         <a class="module-name"
-           [routerLink]="['../../list',{project:projectName,module:m.name}]"
+           [routerLink]="['../../../list',{project:projectName,module:m.name}]"
            placement="right" ngbTooltip="查看 [{{m.name}}] 下的i18n">{{m.name}}</a>
         <pre>{{m.desc}}</pre>
     </li>

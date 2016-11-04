@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpService} from '../../_shared';
+import {HttpService,MessageService} from '../../_shared';
 import {I18nService} from '../i18n.service';
 
 @Component({
@@ -10,7 +10,7 @@ import {I18nService} from '../i18n.service';
 export class ProjectComponent implements OnInit {
   projects: any[];
 
-  constructor(public http: HttpService, public i18nService: I18nService) {
+  constructor(public http: HttpService, public i18nService: I18nService,public message: MessageService) {
 
   }
 
@@ -21,4 +21,17 @@ export class ProjectComponent implements OnInit {
   getProjects() {
     this.projects = this.i18nService.project;
   }
+  build() {
+    this.http.add('build', {}).subscribe(res => {
+      if (res.status === 'success') {
+        this.message.show({text: 'build success!!!'});
+      } else {
+        this.message.show({text: 'build fail!!!', type: 'danger'});
+      }
+    });
+  }
+  refreshI18n(project){
+    console.log(project)
+  }
+
 }

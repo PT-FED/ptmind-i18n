@@ -7,5 +7,10 @@
   {
     "name":"ptEngine",
     "desc":"网页分析工具"
+  },
+  {
+    "name":"i18nTest",
+    "desc":"测试i18n",
+    "refreshUrl":"http://localhost:3000/updateI18n"
   }
 ]
