@@ -5,7 +5,8 @@ import {I18nService} from './i18n.service';
 @Component({
   selector: 'app-i18n',
   templateUrl: './i18n.component.html',
-  styleUrls: ['./i18n.component.scss']
+  styleUrls: ['./i18n.component.scss'],
+  providers: [I18nService]
 })
 export class I18nComponent implements OnInit {
 

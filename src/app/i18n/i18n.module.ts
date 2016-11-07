@@ -4,7 +4,6 @@ import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {routing} from './i18n.router';
 import {I18nComponent} from './i18n.component';
-import {I18nService} from './i18n.service';
 import {ListComponent} from './list/list.component';
 import {ProjectsComponent} from './projects/projects.component';
 import {ModuleComponent, AddModuleModalContentComponent} from './module/module.component';
@@ -21,7 +20,7 @@ import {SearchComponent} from './search/search.component';
     NgbModule,
     routing
   ],
-  providers: [I18nService, DetailI18nResolve, ProjectResolve, LanguageLocaleResolve],
+  providers: [DetailI18nResolve, ProjectResolve, LanguageLocaleResolve],
   declarations: [I18nComponent,
     ListComponent, ProjectsComponent, ModuleComponent,
     AddModuleModalContentComponent,
