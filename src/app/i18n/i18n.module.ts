@@ -6,7 +6,7 @@ import {routing} from './i18n.router';
 import {I18nComponent} from './i18n.component';
 import {I18nService} from './i18n.service';
 import {ListComponent} from './list/list.component';
-import {ProjectComponent} from './projects/project.component';
+import {ProjectsComponent} from './projects/projects.component';
 import {ModuleComponent, AddModuleModalContentComponent} from './module/module.component';
 import {EditComponent} from './edit/edit.component';
 import {DetailI18nResolve} from './edit/edit.resolve';
@@ -14,7 +14,6 @@ import {ProjectResolve} from './i18nResolve/project.resolve';
 import {LanguageLocaleResolve} from './i18nResolve/languageLocale.resolve';
 import {AddComponent} from './add/add.component';
 import {SearchComponent} from './search/search.component';
-import { ProjectUpdateComponent } from './project-update/project-update.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -24,12 +23,11 @@ import { ProjectUpdateComponent } from './project-update/project-update.componen
   ],
   providers: [I18nService, DetailI18nResolve, ProjectResolve, LanguageLocaleResolve],
   declarations: [I18nComponent,
-    ListComponent, ProjectComponent, ModuleComponent,
+    ListComponent, ProjectsComponent, ModuleComponent,
     AddModuleModalContentComponent,
     EditComponent,
     AddComponent,
-    SearchComponent,
-    ProjectUpdateComponent],
+    SearchComponent],
   entryComponents: [AddModuleModalContentComponent]
 })
 export class I18nModule {

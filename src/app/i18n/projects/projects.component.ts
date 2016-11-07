@@ -4,10 +4,10 @@ import {I18nService} from '../i18n.service';
 
 @Component({
   selector: 'app-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.scss']
+  templateUrl: './projects.component.html',
+  styleUrls: ['./projects.component.scss']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectsComponent implements OnInit {
   projects: any[];
 
   constructor(public http: HttpService, public i18nService: I18nService,public message: MessageService) {
@@ -29,9 +29,6 @@ export class ProjectComponent implements OnInit {
         this.message.show({text: 'build fail!!!', type: 'danger'});
       }
     });
-  }
-  refreshI18n(project){
-    console.log(project)
   }
 
 }

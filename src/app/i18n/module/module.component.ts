@@ -29,14 +29,14 @@ export class ModuleComponent implements OnInit {
 
   modules: any[];
 
-  constructor(public router: ActivatedRoute,
+  constructor(public route: ActivatedRoute,
               public message: MessageService,
               public http: HttpService,
               public modalService: NgbModal) {
   }
 
   ngOnInit() {
-    this.router.params.forEach((p: Params) => {
+    this.route.params.forEach((p: Params) => {
       this.projectName = p['projectName'];
       this.getModules();
     });

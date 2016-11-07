@@ -20,7 +20,7 @@
             <td>
               <a routerLinkActive="active" routerLink="./{{p.name}}/module"
                  placement="left" ngbTooltip="查看 [{{p.name}}] 下的modules">modules</a>
-              <a *ngIf="p.refreshUrl" href="{{p.refreshUrl}}" target="_blank"
+              <a *ngIf="p.refreshUrl" [href]="p.refreshUrl" target="_blank"
                  placement="bottom" ngbTooltip="刷新[{{p.name}}]的i18n">refresh</a>
             </td>
         </tr>

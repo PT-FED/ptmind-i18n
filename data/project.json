@@ -11,6 +11,7 @@
   {
     "name":"i18nTest",
     "desc":"测试i18n",
-    "refreshUrl":"http://localhost:3000/updateI18n"
+    "refreshUrl":"http://localhost:3000/updateI18n",
+    "projectUrl":"http://localhost:3000"
   }
 ]

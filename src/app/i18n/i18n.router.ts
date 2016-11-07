@@ -2,13 +2,12 @@ import {ModuleWithProviders}   from '@angular/core';
 import {Routes, RouterModule}  from '@angular/router';
 import {I18nComponent} from './i18n.component';
 import {ListComponent} from './list/list.component';
-import {ProjectComponent} from './projects/project.component';
+import {ProjectsComponent} from './projects/projects.component';
 import {ModuleComponent} from './module/module.component';
 import {EditComponent} from './edit/edit.component';
 import {DetailI18nResolve} from './edit/edit.resolve';
 import {AddComponent} from './add/add.component';
 import {SearchComponent} from './search/search.component';
-import {ProjectUpdateComponent} from './project-update/project-update.component';
 import {ProjectResolve} from './i18nResolve/project.resolve';
 import {LanguageLocaleResolve} from './i18nResolve/languageLocale.resolve';
 const routes: Routes = [
@@ -22,11 +21,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ProjectComponent
-      },
-      {
-        path: ':projectName',
-        component: ProjectUpdateComponent
+        component: ProjectsComponent
       },
       {
         path: ':projectName/module',
