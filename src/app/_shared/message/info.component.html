@@ -1,0 +1,5 @@
+<div class="app-message-group">
+  <div *ngFor="let message of messages"
+    class="app-message-group-item {{message.class}}" [@flyInOut]="'in'">{{message.text}}</div>
+</div>
+

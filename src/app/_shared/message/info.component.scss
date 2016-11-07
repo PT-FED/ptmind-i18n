@@ -5,7 +5,7 @@ $messageBorderRadius:5px;
   bottom:3px;
   right: 3px;
 }
-.app-message-group{
+:host /deep/ .app-message-group{
   min-width: 240px;
   max-width: 480px;
   .app-message-group-item{

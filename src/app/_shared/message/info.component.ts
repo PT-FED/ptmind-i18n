@@ -1,4 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,trigger,
+  state,
+  style,
+  transition,
+  animate} from '@angular/core';
 import {MessageService, IMessage} from './message.service';
 
 class Message implements IMessage {
@@ -7,12 +11,26 @@ class Message implements IMessage {
   class: string;
 }
 
+
+
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss']
+  selector: 'app-info',
+  templateUrl: './info.component.html',
+  styleUrls: ['./info.component.scss'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({transform: 'translateX(0)',opacity:1})),
+      transition('void => *', [
+        style({transform: 'translateX(-100%)',opacity:0}),
+        animate(300)
+      ]),
+      transition('* => void', [
+        animate(300, style({transform: 'translateX(100%)',opacity:0}))
+      ])
+    ])
+  ],
 })
-export class MessageComponent implements OnInit {
+export class InfoComponent implements OnInit {
   messages: IMessage[] = [];
 
   constructor(public messageService: MessageService) {
