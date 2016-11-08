@@ -8,6 +8,7 @@ import {ListComponent} from './list/list.component';
 import {ProjectsComponent} from './projects/projects.component';
 import {ModuleComponent, AddModuleModalContentComponent} from './module/module.component';
 import {EditComponent} from './edit/edit.component';
+import {I18nService} from './i18n.service';
 import {DetailI18nResolve} from './edit/edit.resolve';
 import {ProjectResolve} from './i18nResolve/project.resolve';
 import {LanguageLocaleResolve} from './i18nResolve/languageLocale.resolve';
@@ -20,7 +21,7 @@ import {SearchComponent} from './search/search.component';
     NgbModule,
     routing
   ],
-  providers: [DetailI18nResolve, ProjectResolve, LanguageLocaleResolve],
+  providers: [I18nService,DetailI18nResolve, ProjectResolve, LanguageLocaleResolve],
   declarations: [I18nComponent,
     ListComponent, ProjectsComponent, ModuleComponent,
     AddModuleModalContentComponent,
