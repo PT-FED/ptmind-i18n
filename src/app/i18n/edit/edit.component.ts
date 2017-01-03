@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router,Params} from '@angular/router';
 import {HttpService, MessageService} from '../../_shared';
 
 @Component({
@@ -18,6 +18,14 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     this.route.data.forEach(data => {
       this.i18n = data['i18n'];
+    });
+    this.route.params.forEach((p: Params) => {
+      let queryParams = {
+        project: this.route.params['project'],
+        module: this.route.params['module'],
+        key: this.route.params['key'],
+      };
+
     });
   }
 

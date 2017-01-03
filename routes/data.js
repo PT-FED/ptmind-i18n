@@ -1,5 +1,6 @@
 let express = require('express');
 var jsonfile = require('jsonfile');
+jsonfile.spaces = 2;
 var path = require('path');
 var q = require('q');
 var projectDataPath = path.join(__dirname, '../data/project.json');

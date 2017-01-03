@@ -1,20 +1,20 @@
 <nav class="navbar navbar-dark bg-inverse">
 
   <div class="container">
-    <a class="navbar-brand " routerLink="i18n">Pt i18n</a>
+    <a class="navbar-brand " routerLink="i18n">主页</a>
     <ul class="nav navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="i18n/add" routerLinkActive="active">New</a>
+        <a class="nav-link" routerLink="i18n/add" routerLinkActive="active">添加i18n</a>
       </li>
 
     </ul>
     <form class="form-inline navbar-form pull-right">
       <input class="form-control" type="text"
              (keypress)="inputSearchText($event)"
-             placeholder="Search"
+             placeholder="输入关键字"
              [(ngModel)]="searchText"
              [ngModelOptions]="{standalone: true}">
-      <button class="btn btn-outline-success" type="button" (click)="search()">Search</button>
+      <button class="btn btn-outline-success" type="button" (click)="search()">搜索</button>
     </form>
   </div>
 

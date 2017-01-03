@@ -1,27 +1,27 @@
 <div class="header">
-    <h1 class="page-header">projects</h1>
-  <button (click)="build()" class="btn btn-outline-info">build i18n</button>
+    <h1 class="page-header">项目列表</h1>
+  <button class="btn btn-outline-info"
+          placement="bottom" ngbTooltip="重新编译国际化文件"
+          (click)="build()">编译 i18n</button>
 </div>
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th width="200px">name</th>
-            <th>desc</th>
-            <th width="182px"></th>
+            <th width="200px">项目名称</th>
+            <th>项目描述</th>
+            <th width="140px"></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let p of projects">
-            <td>
-                <a routerLinkActive="active" routerLink="./project/{{p.name}}"
-                   placement="right" ngbTooltip="编辑 [{{p.name}}]">{{p.name}}</a>
+            <td>{{p.name}}
             </td>
             <td>{{p.desc}}</td>
             <td>
               <a routerLinkActive="active" routerLink="./{{p.name}}/module"
-                 placement="left" ngbTooltip="查看 [{{p.name}}] 下的modules">modules</a>
+                 placement="left" ngbTooltip="查看 [{{p.name}}] 下的modules">模块</a>
               <a *ngIf="p.refreshUrl" [href]="p.refreshUrl" target="_blank"
-                 placement="bottom" ngbTooltip="刷新[{{p.name}}]的i18n">refresh</a>
+                 placement="bottom" ngbTooltip="刷新[{{p.name}}]的国际化">适用 i18n</a>
             </td>
         </tr>
     </tbody>

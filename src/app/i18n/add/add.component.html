@@ -1,36 +1,36 @@
 <h1 class="page-header">
-  add i18n
+  添加i18n
 </h1>
 <div class="form-group clearfix">
   <div ngbDropdown class="d-inline-block">
-    <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>{{selectedProject||'select project'}}
+    <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>{{selectedProject||'选择项目'}}
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
       <button class="dropdown-item"
               (click)="selectProject(p)"
               *ngFor="let p of projects">{{p.name}}
       </button>
-      <button *ngIf="!projects.length" class="dropdown-item">no data</button>
+      <button *ngIf="!projects.length" class="dropdown-item">没的数据</button>
     </div>
   </div>
   <div ngbDropdown class="d-inline-block">
-    <button class="btn btn-outline-primary" id="dropdownMenu2" ngbDropdownToggle>{{selectedModule|| 'select module'}}
+    <button class="btn btn-outline-primary" id="dropdownMenu2" ngbDropdownToggle>{{selectedModule|| '选择模块'}}
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
       <button class="dropdown-item"
               *ngFor="let m of modules"
               (click)="selectedModule=m.name">{{m.name}}</button>
-      <button *ngIf="!modules.length" class="dropdown-item">no data</button>
+      <button *ngIf="!modules.length" class="dropdown-item">没的数据</button>
     </div>
   </div>
   <input type="text" class=" form-control text-key" [(ngModel)]="key"
          required
          pattern="[a-zA-Z0-9_]+"
          placement="bottom" ngbTooltip="数字/字母/下划线(_)"
-         placeholder="input i18n key" #i18nKey="ngModel">
+         placeholder="输入i18n的key" #i18nKey="ngModel">
   <button class="btn btn-outline-success pull-right"
           [disabled]="!selectedProject || !selectedModule || i18nKey.invalid"
-          (click)="save()">Save
+          (click)="save()">保存
   </button>
 </div>
 

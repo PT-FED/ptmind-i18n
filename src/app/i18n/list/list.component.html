@@ -1,16 +1,18 @@
 <h1 class="page-header">
-    i18n list
+    i18n 列表
 </h1>
 <ul class="list-group" *ngIf="i18ns?.length">
     <li class="list-group-item" *ngFor="let l of i18ns">
         <a [routerLink]="['../edit',{project:l.project,module:l.module,key:l.key}]"
            placement="right" ngbTooltip="编辑该i18n"
            class="language-key">{{l.project}} > {{l.module}} > {{l.key}}</a>
-        <span class="i18n-del" (click)="delete(l)">x</span>
+        <span class="i18n-del"
+              placement="bottom" ngbTooltip="删除i18n"
+              (click)="delete(l)">x</span>
         <div *ngFor="let i of l.i18n">
             <h5>{{i.language}}:{{i.locale}}</h5>
             <pre [innerHtml]="i.value"></pre>
         </div>
     </li>
 </ul>
-<p *ngIf="i18ns?.length===0">no data</p>
+<p *ngIf="i18ns?.length===0">没的数据</p>

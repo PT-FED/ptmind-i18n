@@ -1,1 +1,46 @@
-[{"project":"ptmind","name":"text","desc":"展示文本用\r\n有的时候也用在表格中"},{"project":"ptmind","name":"label","desc":"展示label"},{"project":"ptmind","name":"format","desc":"格式化的国际化\n一般会被js调用"},{"project":"ptmind","name":"error","desc":"错误信息的提示语。"},{"project":"ptEngine","name":"common","desc":"公共模块"},{"project":"ptEngine","name":"text","desc":"一般是文本"},{"project":"ptEngine","name":"url","desc":"各种url\n比如帮助文档"},{"project":"i18nTest","name":"text"}]
+[
+  {
+    "project": "ptmind",
+    "name": "text",
+    "desc": "展示文本用\r\n有的时候也用在表格中"
+  },
+  {
+    "project": "ptmind",
+    "name": "label",
+    "desc": "展示label"
+  },
+  {
+    "project": "ptmind",
+    "name": "format",
+    "desc": "格式化的国际化\n一般会被js调用"
+  },
+  {
+    "project": "ptmind",
+    "name": "error",
+    "desc": "错误信息的提示语。"
+  },
+  {
+    "project": "ptEngine",
+    "name": "common",
+    "desc": "公共模块"
+  },
+  {
+    "project": "ptEngine",
+    "name": "text",
+    "desc": "一般是文本"
+  },
+  {
+    "project": "ptEngine",
+    "name": "url",
+    "desc": "各种url\n比如帮助文档"
+  },
+  {
+    "project": "i18nTest",
+    "name": "text"
+  },
+  {
+    "project": "ptEngine",
+    "name": "error",
+    "desc": "错误提示信息。\n一般是在用户输入的时候提示"
+  }
+]
